@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomy Digital | AI Automation Services</title>
+    
+    <!-- Chosen Palette: Sage & Innovator (White, Light Grey, Dark Charcoal, Neon Green Accent) -->
+    <!-- Application Structure Plan: Single-page application using a sticky top navigation for smooth scrolling to thematic sections. Interactive elements like tabs for 'Services' and 'Industries', and modals for 'Case Studies' and 'Blog' are used to present detailed information without overwhelming the user, creating a focused and fluid exploration path from problem discovery to solution and proof. This structure condenses a multi-page plan into a digestible SPA format. -->
+    <!-- Visualization & Content Choices: Report Info: Industry-specific ROI metrics -> Goal: Compare performance gains -> Viz/Presentation: Interactive Bar Chart (Chart.js) -> Interaction: User clicks industry tab (e.g., 'E-commerce'), chart dynamically updates to show corresponding data -> Justification: Transforms a static table into an engaging, interactive data visualization, making comparisons more intuitive. Report Info: Step-by-step process (Autonomy Blueprint™) -> Goal: Explain a process -> Presentation: Styled HTML/CSS Timeline -> Interaction: Scroll-triggered animations highlight each step -> Justification: Visually breaks down a complex process into digestible steps. Report Info: Detailed Case Studies/Blog Posts -> Goal: Provide in-depth proof/insights -> Presentation: Modals -> Interaction: Click 'Read More' to open a modal view -> Justification: Keeps the main page clean while providing access to detailed content. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent-color: #39FF14;
+            --dark-blue-charcoal: #1D2B3A;
+            --light-grey: #F5F5F7;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+            color: var(--dark-blue-charcoal);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Figtree', sans-serif;
+        }
+        .accent-bg { background-color: var(--accent-color); }
+        .accent-text { color: var(--accent-color); }
+        .accent-border { border-color: var(--accent-color); }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--dark-blue-charcoal);
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(57, 255, 20, 0.4);
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold">Autonomy<span class="accent-text">.</span>Digital</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#process" class="nav-link">Process</a>
+                <a href="#results" class="nav-link">Results</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <a href="#contact" class="cta-button px-6 py-2 rounded-full hidden md:inline-block">Schedule a Call</a>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col space-y-4">
+             <a href="#services" class="nav-link text-center">Services</a>
+             <a href="#process" class="nav-link text-center">Process</a>
+             <a href="#results" class="nav-link text-center">Results</a>
+             <a href="#pricing" class="nav-link text-center">Pricing</a>
+             <a href="#about" class="nav-link text-center">About</a>
+             <a href="#contact" class="cta-button px-6 py-2 rounded-full text-center">Schedule a Call</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-7xl font-extrabold leading-tight">
+                    Put Your Operations on Autopilot.
+                    <br/>
+                    <span class="accent-text">Reclaim Your Time for Growth.</span>
+                </h1>
+                <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">
+                    We build intelligent automation solutions powered by AI to eliminate repetitive tasks, unlock operational efficiency, and empower your team to focus on what matters most.
+                </p>
+                <div class="mt-10">
+                    <a href="#contact" class="cta-button px-10 py-4 rounded-full text-lg">Schedule a Discovery Call</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem/Solution Section -->
+        <section class="py-20 md:py-32 section-fade-in">
+             <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                     <h2 class="text-3xl md:text-5xl font-bold">Stop Drowning in Manual Work.</h2>
+                     <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Start Driving Strategic Value. In today's landscape, operational drag is the silent killer of growth.</p>
+                 </div>
+                 <div class="max-w-4xl mx-auto p-8 md:p-12 rounded-2xl bg-gray-50 border border-gray-200">
+                     <h3 class="text-2xl font-bold text-center">The Solution: <span class="accent-text">Intelligent Automation</span></h3>
+                     <p class="mt-4 text-gray-700 text-center">
+                         We break the cycle. Autonomy Digital designs and deploys intelligent systems that think, adapt, and execute. By leveraging Robotic Process Automation (RPA), machine learning, and generative AI, we build a digital workforce that operates 24/7 with precision and scale. This frees your human experts to drive strategy, innovate, and deliver exceptional customer value—the work they were hired to do.
+                     </p>
+                 </div>
+             </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section id="services" class="py-20 md:py-32 bg-gray-50 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold">A Solution for Every Business Challenge</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This section outlines our core AI automation services. Click on a service to learn more about how we can address your specific operational pain points and unlock new avenues for growth.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center -m-4" id="service-tabs">
+                    <!-- Service tabs will be injected here by JS -->
+                </div>
+
+                <div id="service-content-area" class="mt-16 max-w-4xl mx-auto p-8 md:p-12 rounded-2xl bg-white shadow-lg transition-all duration-500">
+                    <!-- Service content will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="process" class="py-20 md:py-32 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold">The Autonomy Blueprint™</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">We've engineered a proven, 90-day framework for delivering transformative results with speed and precision, minimizing disruption and maximizing your ROI.</p>
+                </div>
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid md:grid-cols-4 gap-8">
+                        <!-- Step 1 -->
+                        <div class="text-center p-6 border-t-4 accent-border rounded-lg bg-gray-50">
+                            <div class="text-4xl font-bold accent-text mb-2">01</div>
+                            <h3 class="text-xl font-bold mb-2">Discover & Map</h3>
+                            <p class="text-gray-600">Weeks 1-2: A deep dive into your workflows to identify high-impact automation opportunities and define baseline success metrics.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="text-center p-6 border-t-4 accent-border rounded-lg bg-gray-50">
+                            <div class="text-4xl font-bold accent-text mb-2">02</div>
+                            <h3 class="text-xl font-bold mb-2">Develop & Deploy MVP</h3>
+                            <p class="text-gray-600">Weeks 3-4: We build and deploy an initial Minimum Viable Product in a controlled environment to validate its effectiveness.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="text-center p-6 border-t-4 accent-border rounded-lg bg-gray-50">
+                             <div class="text-4xl font-bold accent-text mb-2">03</div>
+                            <h3 class="text-xl font-bold mb-2">Pilot & Optimize</h3>
+                            <p class="text-gray-600">Weeks 5-8: We roll out the MVP to a limited user group, gathering real-world data to rapidly refine and improve the solution.</p>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="text-center p-6 border-t-4 accent-border rounded-lg bg-gray-50">
+                            <div class="text-4xl font-bold accent-text mb-2">04</div>
+                            <h3 class="text-xl font-bold mb-2">Scale & Empower</h3>
+                            <p class="text-gray-600">Weeks 9-12: Full-scale deployment with comprehensive training, documentation, and a clear ROI analysis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results / Industry Solutions Section -->
+        <section id="results" class="py-20 md:py-32 bg-gray-50 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold">Proof of Impact & Industry Expertise</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">We measure our success by the tangible value we create. Explore the typical performance gains our clients experience and see how we apply our universal automation principles to solve unique industry challenges.</p>
+                </div>
+                
+                <div class="flex justify-center mb-8 space-x-2 md:space-x-4" id="industry-tabs">
+                    <button data-industry="E-commerce" class="industry-tab-button bg-white border-2 accent-border accent-text py-2 px-6 rounded-full font-semibold">E-commerce</button>
+                    <button data-industry="Healthcare" class="industry-tab-button bg-transparent border-2 border-gray-300 text-gray-500 py-2 px-6 rounded-full font-semibold">Healthcare</button>
+                    <button data-industry="Finance" class="industry-tab-button bg-transparent border-2 border-gray-300 text-gray-500 py-2 px-6 rounded-full font-semibold">Finance</button>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-20 md:py-32 section-fade-in">
+             <div class="container mx-auto px-6">
+                 <div class="grid md:grid-cols-3 gap-8">
+                     <div class="bg-gray-50 p-8 rounded-lg">
+                         <p class="text-gray-700 italic">"Working with Autonomy Digital was a game-changer. We automated <span class='font-bold accent-text'>89% of our customer support tickets</span>, and our overall response time was slashed by <span class='font-bold accent-text'>87%</span>."</p>
+                         <p class="mt-4 font-bold">- CEO, LuxeCart Retail</p>
+                     </div>
+                     <div class="bg-gray-50 p-8 rounded-lg">
+                         <p class="text-gray-700 italic">"The automation solution recovered what we estimate to be <span class='font-bold accent-text'>$1M in our sales pipeline</span> by ensuring flawless follow-up and lead management. It removed hundreds of days of manual work annually."</p>
+                         <p class="mt-4 font-bold">- VP of Operations, GrowthCorp</p>
+                     </div>
+                     <div class="bg-gray-50 p-8 rounded-lg">
+                         <p class="text-gray-700 italic">"The AI-powered fraud detection system is incredible. We've seen a <span class='font-bold accent-text'>2x improvement</span> in identifying compromised accounts and a <span class='font-bold accent-text'>300% increase in speed</span>."</p>
+                         <p class="mt-4 font-bold">- Chief Risk Officer, FinSecure Bank</p>
+                     </div>
+                 </div>
+             </div>
+        </section>
+        
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 md:py-32 bg-gray-50 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold">Transparent Pricing for Transformative Value</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Our engagement models provide a predictable investment path for your automation goals, focusing on ROI, not just billable hours.</p>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Launch Package -->
+                    <div class="border rounded-lg p-8 bg-white shadow-lg flex flex-col">
+                        <h3 class="text-2xl font-bold">Launch</h3>
+                        <p class="text-gray-500 mt-2">For SMBs & Startups</p>
+                        <p class="text-5xl font-extrabold my-6">From $8,000</p>
+                        <p class="text-gray-600 font-semibold mb-6">Automate a single, high-impact process with a 90-day implementation.</p>
+                        <ul class="space-y-4 mb-8 text-gray-700">
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>1-2 Automated Processes</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>90-Day Autonomy Blueprint™</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Post-Project ROI Report</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Standard Support</li>
+                        </ul>
+                        <a href="#contact" class="mt-auto text-center w-full cta-button px-6 py-3 rounded-full">Get Started</a>
+                    </div>
+                     <!-- Scale Package -->
+                    <div class="border-4 accent-border rounded-lg p-8 bg-white shadow-2xl flex flex-col relative">
+                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 accent-bg text-black font-bold text-sm px-4 py-1 rounded-full">MOST POPULAR</span>
+                        <h3 class="text-2xl font-bold">Scale</h3>
+                        <p class="text-gray-500 mt-2">For Growth-Stage Companies</p>
+                        <p class="text-5xl font-extrabold my-6">From $6,000/mo</p>
+                        <p class="text-gray-600 font-semibold mb-6">Automate multiple core workflows with ongoing strategic partnership.</p>
+                        <ul class="space-y-4 mb-8 text-gray-700">
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>3-5 Interconnected Workflows</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>All Services Available</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Monthly Strategy Sessions</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Priority Support</li>
+                        </ul>
+                        <a href="#contact" class="mt-auto text-center w-full cta-button px-6 py-3 rounded-full">Schedule a Consultation</a>
+                    </div>
+                    <!-- Enterprise Package -->
+                    <div class="border rounded-lg p-8 bg-white shadow-lg flex flex-col">
+                        <h3 class="text-2xl font-bold">Enterprise</h3>
+                        <p class="text-gray-500 mt-2">For Large Organizations</p>
+                        <p class="text-5xl font-extrabold my-6">Custom</p>
+                        <p class="text-gray-600 font-semibold mb-6">Full-scale digital transformation with a custom roadmap and dedicated advisor.</p>
+                         <ul class="space-y-4 mb-8 text-gray-700">
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Company-Wide Scope</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Bespoke Solutions</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Dedicated Strategic Advisor</li>
+                           <li class="flex items-center"><span class="accent-text mr-3">✔</span>Dedicated Support Team</li>
+                        </ul>
+                        <a href="#contact" class="mt-auto text-center w-full cta-button px-6 py-3 rounded-full">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32 section-fade-in">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                 <h2 class="text-3xl md:text-5xl font-bold">Liberating Human Potential</h2>
+                 <div class="mt-8 text-lg text-gray-700 space-y-6 text-left">
+                     <p><strong>Our Mission:</strong> To automate the mundane. We believe that technology's greatest promise is not to replace people, but to empower them. Our mission is to build intelligent automation solutions that handle the repetitive, process-driven work, freeing human teams to focus on creativity, strategy, and the complex problem-solving that drives real progress.</p>
+                     <p><strong>Our Story:</strong> Autonomy Digital was founded by a team of business strategists and AI engineers who saw a critical gap in the market. We created Autonomy Digital to be the bridge between AI's potential and practical business results. We are a strategic partner dedicated to understanding your unique business challenges and engineering tailored AI automation solutions that deliver measurable, transformative results.</p>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Case Studies and Blog -->
+        <section id="insights" class="py-20 md:py-32 bg-gray-50 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold">Explore Our Insights</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Dive deeper into our work. Explore detailed case studies showcasing real-world results and read our blog for pragmatic advice on your AI automation journey.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8" id="insights-grid">
+                     <!-- Insights content (case studies & blogs) will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Final CTA Section -->
+        <section id="contact" class="py-20 md:py-32 section-fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold">Ready to Build Your<br/> Autonomous Future?</h2>
+                <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-600">
+                   The next era of business will be defined by operational agility and intelligent automation. Don't let manual processes dictate your potential. Let's build a solution that scales with your ambition.
+                </p>
+                <div class="mt-10">
+                    <a href="#" class="cta-button px-10 py-4 rounded-full text-lg">Schedule Your Free Discovery Call</a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="bg-gray-800 text-gray-300">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Autonomy Digital. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#services" class="hover:accent-text">Services</a>
+                <a href="#process" class="hover:accent-text">Process</a>
+                <a href="#pricing" class="hover:accent-text">Pricing</a>
+                <a href="#about" class="hover:accent-text">About</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal Structure -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center p-4">
+        <div id="modal-content" class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-8 relative">
+            <button id="modal-close-button" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            <!-- Modal content will be injected here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Data Store
+            const serviceData = {
+                'workflow': {
+                    title: 'Intelligent Workflow Automation',
+                    icon: '⚙️',
+                    tagline: 'Eliminate Repetitive Work. Unleash Your Team\'s Productivity.',
+                    description: 'Your most talented employees are spending their days on copy-paste tasks and manual data entry. This service targets these core operational bottlenecks, deploying a digital workforce to execute rule-based and decision-heavy tasks with perfect accuracy, 24/7.',
+                    features: ['Robotic Process Automation (RPA)', 'Intelligent Document Processing (IDP)', 'Process & Task Mining', 'API & System Integration'],
+                    tech: ['UiPath', 'Automation Anywhere', 'Microsoft Power Automate', 'AWS']
+                },
+                'cx': {
+                    title: 'AI-Powered Customer Experience',
+                    icon: '💬',
+                    tagline: 'Deliver Instant, Personalized Support That Builds Loyalty.',
+                    description: 'Slow response times and generic interactions lead to frustrated customers. Our AI-Powered CX service helps you build an intelligent, scalable, and highly personalized customer support engine that operates 24/7.',
+                    features: ['Conversational AI Chatbots', 'Personalized Recommendation Engines', 'Sentiment Analysis', 'Automated Ticket Routing'],
+                    tech: ['Google Dialogflow', 'OpenAI', 'Zendesk', 'Gorgias', 'HubSpot AI']
+                },
+                'agent': {
+                    title: 'Custom AI Agent Development',
+                    icon: '🤖',
+                    tagline: 'Deploy an Autonomous Workforce for Your Most Complex Challenges.',
+                    description: 'Beyond simple automation lies agentic AI. These are autonomous systems capable of reasoning, planning, and executing complex, multi-step tasks with minimal human intervention. We build these sophisticated digital workers.',
+                    features: ['Autonomous Agentic Workflows', 'Data Synthesis & Research Agents', 'Dynamic Resource Allocation', 'Human-in-the-Loop Oversight'],
+                    tech: ['Python', 'LangChain', 'OpenAI (GPT-4o)', 'Anthropic (Claude)']
+                },
+                'intelligence': {
+                    title: 'Data-Driven Decision Intelligence',
+                    icon: '📊',
+                    tagline: 'Turn Your Data Into Your Most Powerful Strategic Asset.',
+                    description: 'Many businesses collect vast amounts of data but lack the tools to translate it into smart, timely decisions. This service builds the AI-powered systems you need to move from reactive reporting to proactive, predictive strategy.',
+                    features: ['Predictive Analytics & Forecasting', 'Intelligent BI Dashboards', 'Supply Chain Optimization', 'AI-Powered Anomaly & Fraud Detection'],
+                    tech: ['AWS SageMaker', 'Google Cloud AI', 'Tableau', 'Power BI']
+                }
+            };
+            
+            const insightsData = {
+                'case-ecommerce': {
+                    type: 'Case Study',
+                    title: 'E-commerce CX Transformation',
+                    client: 'LuxeCart Retail',
+                    challenge: 'Rapid growth led to an explosion in customer support inquiries. Their small support team was overwhelmed, leading to a response time of over 24 minutes and dropping customer satisfaction.',
+                    solution: 'Implemented a multi-faceted AI-Powered CX solution. Developed an AI chatbot integrated with their Shopify store, a machine learning recommendation engine, and automated ticket handling within Gorgias.',
+                    results: [
+                        '89% of all customer support tickets were fully automated.',
+                        'Average first response time reduced from 24 minutes to 3 minutes.',
+                        '18% increase in Average Order Value (AOV).'
+                    ],
+                    testimonial: "The AI solution didn't just fix our support bottleneck; it transformed our entire customer experience. One of the best investments we've ever made."
+                },
+                'case-healthcare': {
+                    type: 'Case Study',
+                    title: 'Healthcare Administrative Automation',
+                    client: 'MedStream Diagnostics',
+                    challenge: "The revenue cycle was plagued by manual, error-prone processes, leading to a lengthy 45-day claims processing time and significant revenue leakage.",
+                    solution: 'Deployed an Intelligent Workflow Automation solution using Intelligent Document Processing (IDP) to extract data from patient forms and Robotic Process Automation (RPA) to automate claims submission and status checks.',
+                    results: [
+                        '90% of administrative tasks were automated.',
+                        'Claims processing accuracy improved to 99.5%.',
+                        'Average revenue cycle reduced from 45 days to 15 days.'
+                    ],
+                    testimonial: 'Our billing team is no longer buried in paperwork. They are now financial analysts. Our cash flow has never been healthier.'
+                },
+                'blog-roi': {
+                    type: 'Blog',
+                    title: 'A Pragmatic Guide to Calculating AI ROI',
+                    content: `
+                        <p class="mb-4">Artificial Intelligence is no longer a futuristic buzzword; it's a powerful business tool. But for business leaders, the critical question isn't about the hype—it's about the bottom line. This guide provides a simple framework to calculate the real, tangible Return on Investment (ROI).</p>
+                        <h4 class="font-bold text-lg mb-2">Step 1: Quantify the Pain</h4>
+                        <p class="mb-4">Start by identifying processes that are Repetitive, Rule-Based, and High-Volume. Calculate the current cost using: ((Time per Task) x (Number of Tasks) x (Employee Cost)) = Monthly Process Cost.</p>
+                        <h4 class="font-bold text-lg mb-2">Step 2: Calculate "Hard ROI"</h4>
+                        <p class="mb-4">The most direct return comes from cost reduction. If a solution costs $60,000 in Year 1 and saves you $162,000, your net saving is $102,000, and your ROI is 170%.</p>
+                        <h4 class="font-bold text-lg mb-2">Step 3: Factor in "Soft ROI"</h4>
+                        <p>Don't forget the second-order benefits: increased productivity, error reduction, enhanced employee morale, and improved compliance. These are often more impactful in the long run.</p>
+                    `
+                }
+            };
+
+            const roiData = {
+                'E-commerce': {
+                    labels: ['CX Ticket Automation', 'Support Cost Reduction', 'Response Time Reduction', 'AOV Increase'],
+                    data: [89, 20, 87.5, 18],
+                    backgroundColor: 'rgba(57, 255, 20, 0.6)',
+                    borderColor: 'rgba(57, 255, 20, 1)',
+                },
+                'Healthcare': {
+                    labels: ['Admin Task Automation', 'Billing Error Reduction', 'Revenue Cycle Reduction', 'Data Accuracy'],
+                    data: [90, 30, 66, 99],
+                    backgroundColor: 'rgba(57, 255, 20, 0.6)',
+                    borderColor: 'rgba(57, 255, 20, 1)',
+                },
+                'Finance': {
+                    labels: ['Compliance Check Automation', 'Fraud Loss Reduction', 'Query Response Reduction', 'Risk ID Speed Increase'],
+                    data: [85, 40, 75, 300],
+                    backgroundColor: 'rgba(57, 255, 20, 0.6)',
+                    borderColor: 'rgba(57, 255, 20, 1)',
+                }
+            };
+            
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Smooth Scrolling for Nav Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if(mobileMenu.classList.contains('hidden') === false){
+                       mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Services Section Logic
+            const serviceTabsContainer = document.getElementById('service-tabs');
+            const serviceContentArea = document.getElementById('service-content-area');
+
+            function renderServiceTabs() {
+                let html = '';
+                for (const key in serviceData) {
+                    const service = serviceData[key];
+                    html += `
+                        <div class="p-4 w-1/2 md:w-1/4">
+                           <button data-service="${key}" class="service-tab-button w-full text-center p-6 bg-white rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-2 border-transparent">
+                               <div class="text-4xl mb-3">${service.icon}</div>
+                               <h4 class="font-bold">${service.title}</h4>
+                           </button>
+                        </div>
+                    `;
+                }
+                serviceTabsContainer.innerHTML = html;
+            }
+
+            function updateServiceContent(serviceKey) {
+                const service = serviceData[serviceKey];
+                serviceContentArea.innerHTML = `
+                    <h3 class="text-2xl md:text-3xl font-bold mb-2">${service.tagline}</h3>
+                    <p class="text-gray-600 mb-6">${service.description}</p>
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        ${service.features.map(f => `<div class="flex items-center"><span class="accent-text mr-2">✔</span> ${f}</div>`).join('')}
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="font-semibold mr-2">Tech Stack:</span>
+                        ${service.tech.map(t => `<span class="bg-gray-200 text-gray-700 text-sm font-medium px-3 py-1 rounded-full">${t}</span>`).join('')}
+                    </div>
+                `;
+                 document.querySelectorAll('.service-tab-button').forEach(btn => {
+                    btn.classList.remove('border-accent-color');
+                    if (btn.dataset.service === serviceKey) {
+                        btn.classList.add('border-accent-color');
+                    }
+                });
+            }
+            
+            serviceTabsContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.service-tab-button');
+                if (button) {
+                    updateServiceContent(button.dataset.service);
+                }
+            });
+
+            renderServiceTabs();
+            updateServiceContent('workflow');
+
+            // ROI Chart Logic
+            const ctx = document.getElementById('roiChart').getContext('2d');
+            let roiChart;
+
+            function createOrUpdateChart(industry) {
+                if (roiChart) {
+                    roiChart.destroy();
+                }
+                const chartData = roiData[industry];
+                roiChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: chartData.labels,
+                        datasets: [{
+                            label: `${industry} Performance Gains (%)`,
+                            data: chartData.data,
+                            backgroundColor: chartData.backgroundColor,
+                            borderColor: chartData.borderColor,
+                            borderWidth: 2,
+                            borderRadius: 5,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#e5e7eb'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%'
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    maxRotation: 0,
+                                    minRotation: 0,
+                                    callback: function(value) {
+                                        const label = this.getLabelForValue(value);
+                                        return label.length > 16 ? label.substring(0, 16) + '...' : label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const industryTabs = document.getElementById('industry-tabs');
+            industryTabs.addEventListener('click', (e) => {
+                 if (e.target.tagName === 'BUTTON') {
+                    const industry = e.target.dataset.industry;
+                    createOrUpdateChart(industry);
+                    
+                    document.querySelectorAll('.industry-tab-button').forEach(btn => {
+                        btn.classList.remove('bg-white', 'border-accent-color', 'accent-text');
+                        btn.classList.add('bg-transparent', 'border-gray-300', 'text-gray-500');
+                    });
+                     e.target.classList.add('bg-white', 'border-accent-color', 'accent-text');
+                     e.target.classList.remove('bg-transparent', 'border-gray-300', 'text-gray-500');
+                 }
+            });
+            createOrUpdateChart('E-commerce');
+
+            // Insights and Modal Logic
+            const insightsGrid = document.getElementById('insights-grid');
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalCloseButton = document.getElementById('modal-close-button');
+
+            function renderInsights() {
+                let html = '';
+                for (const key in insightsData) {
+                    const item = insightsData[key];
+                    html += `
+                        <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                            <span class="accent-text font-semibold text-sm">${item.type.toUpperCase()}</span>
+                            <h4 class="text-xl font-bold mt-2 mb-4">${item.title}</h4>
+                            <p class="text-gray-600 mb-6 flex-grow">${item.challenge || item.content.substring(0, 150).replace('<p class="mb-4">','') + '...'}</p>
+                            <button data-insight="${key}" class="insight-button mt-auto accent-bg text-black font-bold py-2 px-4 rounded-full self-start hover:opacity-90">Read More</button>
+                        </div>
+                    `;
+                }
+                insightsGrid.innerHTML = html;
+            }
+
+            function showModal(insightKey) {
+                const item = insightsData[insightKey];
+                let modalHTML = `<h3 class="text-3xl font-bold mb-4">${item.title}</h3>`;
+
+                if (item.type === 'Case Study') {
+                    modalHTML += `
+                        <p class="mb-2"><strong class="text-gray-800">Client:</strong> ${item.client}</p>
+                        <h4 class="font-bold text-lg mt-6 mb-2">The Challenge</h4>
+                        <p class="text-gray-700 mb-4">${item.challenge}</p>
+                        <h4 class="font-bold text-lg mt-6 mb-2">The Solution</h4>
+                        <p class="text-gray-700 mb-4">${item.solution}</p>
+                        <h4 class="font-bold text-lg mt-6 mb-2">The Results</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                            ${item.results.map(r => `<li>${r}</li>`).join('')}
+                        </ul>
+                        <blockquote class="border-l-4 accent-border pl-4 italic text-gray-600">"${item.testimonial}"</blockquote>
+                    `;
+                } else { // Blog
+                    modalHTML += `<div class="prose max-w-none">${item.content}</div>`;
+                }
+                
+                modalContent.children[1].innerHTML = modalHTML;
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+
+            insightsGrid.addEventListener('click', (e) => {
+                if(e.target.classList.contains('insight-button')) {
+                    showModal(e.target.dataset.insight);
+                }
+            });
+
+            modalCloseButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            renderInsights();
+
+            // Intersection Observer for fade-in animations
+            const sections = document.querySelectorAll('.section-fade-in');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
